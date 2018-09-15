@@ -28,13 +28,11 @@ class AddDeck extends Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.state = {value: ""}
     }
 
     render() {
         return (
             <div className="deck">
-                <input value={this.state.value} onChange={this.handleChange}/>
                 <button onClick={this.handleSubmit}>+</button>
             </div>
         )
@@ -45,8 +43,8 @@ class AddDeck extends Component {
     }
 
     handleSubmit() {
-        this.props.addDeck(this.state.value);
-        this.setState({value: ""})
+        let name = prompt("Name", "");
+        this.props.addDeck(name);
     }
 }
 
