@@ -10,6 +10,13 @@
     position: relative;
 }
 
+.add-deck {
+    background-image: url("add.png");
+    background-size: cover;
+    background-position: center;
+    background-color: white;
+}
+
 .deck-list {
     display: grid;
     grid-auto-rows: 200px;

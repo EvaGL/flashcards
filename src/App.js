@@ -32,8 +32,7 @@ class AddDeck extends Component {
 
     render() {
         return (
-            <div className="deck">
-                <button onClick={this.handleSubmit}>+</button>
+            <div className="deck add-deck" onClick={this.handleSubmit}>
             </div>
         )
     }
