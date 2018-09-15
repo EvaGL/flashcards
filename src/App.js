@@ -17,6 +17,7 @@ class Deck extends Component {
                 <div className="deck-title">{this.props.title}</div>
                 <div className="cards-num">0 cards</div>
                 <button className="delete-icon" onClick={this.onDelete}><i className="material-icons">close</i></button>
+                <button className="learn">Learn</button>
 
             </div>
         )

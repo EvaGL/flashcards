@@ -1,10 +1,11 @@
 .deck {
-    width: 150px;
-    height: 220px;
+    width: 170px;
+    height: 200px;
     border-radius: 10px;
     margin: 10px;
     border: 2px solid #1e90ff;
     position: relative;
+    text-align: center;
 }
 
 .add-deck {
@@ -22,8 +23,20 @@
 }
 
 .cards-num {
-    text-align: center;
     margin-top: 10px;
+}
+
+button.learn {
+    font-size: 1em;
+    margin-top: 45%;
+    overflow: hidden;
+    padding: 8px 8px 8px 8px;
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    background-color: #3e5eab;
+    color: #ecf0f1;
+    transition: background-color .3s;
 }
 
 .deck-list {
