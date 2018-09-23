@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import db from './firebase-config'
 
 class Deck extends Component {
     constructor(props) {
@@ -12,9 +13,10 @@ class Deck extends Component {
     }
 
     render() {
+        let deck = this.props.deck;
         return (
             <div className="deck">
-                <div className="deck-title">{this.props.title}</div>
+                <div className="deck-title">{deck.title}</div>
                 <div className="cards-num">0 cards</div>
                 <button className="delete-icon" onClick={this.onDelete}><i className="material-icons">close</i></button>
                 <button className="learn">Learn</button>
@@ -52,7 +54,7 @@ class AddDeck extends Component {
 class DeckList extends Component {
     render() {
         const decks = this.props.decks.map((deck) =>
-            <Deck title={deck.title} id = {deck.id} onDelete={this.props.onDelete}/>
+            <Deck deck={deck.data()} id = {deck.id} key = {deck.id} onDelete={this.props.onDelete}/>
         );
         return (
             <div className="deck-list">
@@ -69,18 +71,22 @@ class App extends Component {
         super(props);
         this.state = {decks: [], currentId: 0 };
         this.addDeck = this.addDeck.bind(this);
-        this.onDelete = this.onDelete.bind(this)
+        this.onDelete = this.onDelete.bind(this);
+        db.collection("decks").onSnapshot((snap) => {
+           var decks = [];
+           snap.forEach((deck) => {
+               decks = [...decks, deck];
+           });
+           this.setState({decks: decks, currentId: 0})
+        });
     }
 
     addDeck(title) {
-        let decks = this.state.decks;
-        let currentId = this.state.currentId;
-        this.setState({decks: [...decks, {title: title, id: currentId}], currentId: currentId + 1})
+        db.collection("decks").add({title: title});
     }
 
     onDelete(id) {
-        let decks = this.state.decks.filter((deck) => deck.id !== id);
-        this.setState({decks: decks})
+        db.collection("decks").doc(id).delete()
     }
 
     render() {
