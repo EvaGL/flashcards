@@ -47,7 +47,9 @@ class AddDeck extends Component {
 
     handleSubmit() {
         let name = prompt("Name", "");
-        this.props.addDeck(name);
+        if (name != null) {
+            this.props.addDeck(name);
+        }
     }
 }
 
